@@ -470,9 +470,10 @@ class HadoopJobRunner(MRJobRunner, LogInterpretationMixin):
         # (e.g. -outputformat). See #1331.
         #
         # might want to just integrate this into _hadoop_args_for_step?
-        if not reducer:
-            args.extend(['-D', ('%s=0' % translate_jobconf(
-                'mapreduce.job.reduces', self.get_hadoop_version()))])
+        # QUAD specific change to comment reducer requirement
+        #if not reducer:
+        #    args.extend(['-D', ('%s=0' % translate_jobconf(
+        #        'mapreduce.job.reduces', self.get_hadoop_version()))])
 
         # -libjars (#198)
         if self._opts['libjars']:
